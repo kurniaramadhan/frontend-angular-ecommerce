@@ -1,0 +1,85 @@
+<div class="product__discount">
+    <div class="section-title product__discount__title">
+        <h2>Cart Details</h2>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="cartItems.length > 0">
+        <div class="col-lg-12">
+            <div class="shoping__cart__table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="shoping__product">Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Sub Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tempCarItem of cartItems">
+                            <td class="shoping__cart__item">
+                                <img src="{{ tempCarItem.imageUrl }}" width="100px;" alt="">
+                                <h5>{{ tempCarItem.name }}</h5>
+                            </td>
+                            <td class="shoping__cart__price">
+                                {{ tempCarItem.unitPrice | currency: 'USD' }}
+                            </td>
+                            <td class="shoping__cart__quantity">
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <button (click)="decrementQuantity(tempCarItem)" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        {{ tempCarItem.quantity }}
+                                    </div>
+                                    <div class="col">
+                                        <button (click)="incrementQuantity(tempCarItem)" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="shoping__cart__total">
+                                {{ tempCarItem.quantity * tempCarItem.unitPrice| currency: 'USD' }}
+                            </td>
+                            <td class="shoping__cart__item__close">
+                                <button (click)="remove(tempCarItem)" 
+                                    class="btn btn-danger btn-sm rounded-circle">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+            <div class="shoping__checkout">
+                <h5>Cart Total</h5>
+                <ul>
+                    <li>Total Quantity <span>{{ totalQuantity }}</span></li>
+                    <li>Total Price<span>{{ totalPrice | currency: 'USD' }}</span></li>
+                </ul>
+                <a routerLink="/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+        Your shopping cart is empty
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="shoping__cart__btns">
+            <a routerLink="/products" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+            <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                Update Cart</a>
+        </div>
+    </div>
+</div>

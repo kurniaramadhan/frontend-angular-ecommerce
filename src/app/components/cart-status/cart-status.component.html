@@ -1,0 +1,6 @@
+<div class="header__cart">
+    <ul>
+        <li><a routerLink="/cart-details"><i class="fa fa-shopping-bag"></i> <span>{{ totalQuantity }}</span></a></li>
+    </ul>
+    <div class="header__cart__price">item: <span>{{ totalPrice | currency: 'USD' }}</span></div>
+</div>

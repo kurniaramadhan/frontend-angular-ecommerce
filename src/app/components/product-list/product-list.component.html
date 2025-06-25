@@ -1,0 +1,59 @@
+<div class="product__discount">
+    <div class="section-title product__discount__title">
+        <h2>Products</h2>
+    </div>
+</div>
+<div class="filter__item">
+    <div class="row">
+        <div class="col-lg-4 col-md-5">
+            <div class="filter__sort">
+                <span>Page Size</span>
+                <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                    <option selected="true">3</option>
+                    <option>6</option>
+                    <option>9</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="filter__found">
+                <h6><span>{{ products.length }}</span> Products found</h6>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3">
+            <div class="filter__option">
+                <span class="icon_grid-2x2"></span>
+                <span class="icon_ul"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">Product Not Available</div>
+    <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let tempProduct of products">
+        <div class="product__item">
+            <a routerLink="/products/{{ tempProduct.id }}">
+                <div class="product__item__pic set-bg" style="background-image: url('../{{ tempProduct.imageUrl }}')">
+                    <ul class="product__item__pic__hover">
+                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+            </a>
+            <div class="product__item__text">
+                <h6><a routerLink="/products/{{ tempProduct.id }}">{{ tempProduct.name }}</a></h6>
+                <h5>{{ tempProduct.unitPrice | currency:'USD' }}</h5>
+                <button (click)="addToCart(tempProduct)" class="primary-btn">ADD TO CART</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngb-pagination [(page)]="thePageNumber"
+                [pageSize]="thePageSize"
+                [collectionSize]="theTotalElements"
+                [maxSize]="5"
+                [boundaryLinks]="true"
+                (pageChange)="listProducts()">
+</ngb-pagination>

@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="header__top__left">
+            <div *ngIf="isAuthenticated && userFullName" class="login-status-user-info">
+                <ul>
+                    <li><i class="fa fa-envelope"></i> Welcome back {{ userFullName }} !</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="header__top__right">
+            <div class="header__top__right__social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            </div>
+            <div class="header__top__right__social">
+                <div class="login-status-header">
+                    <button *ngIf="!isAuthenticated" routerLink="/login" class="btn btn-success"><i
+                            class="fa fa-key"></i>
+                        Login</button>
+
+                    <button *ngIf="isAuthenticated" (click)="logout()" class="btn btn-danger"><i
+                            class="fa fa-sign-out"></i>
+                        Logout</button>
+                </div>
+            </div>
+            <div class="header__top__right__social">
+                <div class="login-status-header">
+                    <button routerLink="/members" class="btn btn-primary">
+                        <i class="fa fa-user"></i> Members
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
